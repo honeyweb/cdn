@@ -1,63 +1,54 @@
-$(function() {
+var client_logo_template = '<li class="client-logo" style="width:{{width}}px; height:{{height}}px;"><img src="{{path}}"></li>';
 
-    var model = {
-        lastID: 0,
-        pizzas: [],
-        client_logos: [
-            "https://honeyweb.github.io/cdn/images/msmarcom/clients/1.png",
-            "https://honeyweb.github.io/cdn/images/msmarcom/clients/2.png",
-            "https://honeyweb.github.io/cdn/images/msmarcom/clients/3.png",
-            "https://honeyweb.github.io/cdn/images/msmarcom/clients/4.png",
-            "https://honeyweb.github.io/cdn/images/msmarcom/clients/5.png",
-            "https://honeyweb.github.io/cdn/images/msmarcom/clients/6.png",
-            "https://honeyweb.github.io/cdn/images/msmarcom/clients/7.png",
-            "https://honeyweb.github.io/cdn/images/msmarcom/clients/8.png",
-            "https://honeyweb.github.io/cdn/images/msmarcom/clients/9.png",
-            "https://honeyweb.github.io/cdn/images/msmarcom/clients/10.png",
-            "https://honeyweb.github.io/cdn/images/msmarcom/clients/11.png",
-            "https://honeyweb.github.io/cdn/images/msmarcom/clients/12.png",
-        ],
-        client_logo_template:'<li class="client-logo"><img src="%data%"></li>',
-    };
+var client_logos = [
+    "https://honeyweb.github.io/cdn/images/msmarcom/clients/1.png",
+    "https://honeyweb.github.io/cdn/images/msmarcom/clients/2.png",
+    "https://honeyweb.github.io/cdn/images/msmarcom/clients/3.png",
+    "https://honeyweb.github.io/cdn/images/msmarcom/clients/4.png",
+    "https://honeyweb.github.io/cdn/images/msmarcom/clients/5.png",
+    "https://honeyweb.github.io/cdn/images/msmarcom/clients/6.png",
+    "https://honeyweb.github.io/cdn/images/msmarcom/clients/7.png",
+    "https://honeyweb.github.io/cdn/images/msmarcom/clients/8.png",
+    "https://honeyweb.github.io/cdn/images/msmarcom/clients/9.png",
+    "https://honeyweb.github.io/cdn/images/msmarcom/clients/10.png",
+    "https://honeyweb.github.io/cdn/images/msmarcom/clients/11.png",
+    "https://honeyweb.github.io/cdn/images/msmarcom/clients/12.png",
+];
 
-    var controller = {
+var width = 143;
+var height = 100;
+var adjusted_width;
+var total_width;
+var hidden_logos_count;
 
-        getClientLogos: function() {
-            return model.client_logos;
-        },
+function width_adjustment(){
+    var sh = screen.height;
+    var sw = screen.width;
+    adjusted_width = (sw-100) / Math.floor((sw-100)/width);
+    total_width = client_logos.length * adjusted_width;
+    hidden_logos_count = client_logos.length - Math.floor((sw-100)/width) + 1;
+}
+width_adjustment();
 
-        init: function() {
-            view.init();
-        }
-    };
+function client_logos_view(){
+    var str= '<ul class="client-logos" style="width:{{width}}px; height:{{height}}px;">';
+    str = str.replace("{{width}}", total_width);
+    str = str.replace("{{height}}", height);
+    var client_logo="";
+    for (var i = 0; i < client_logos.length; i++) {
+        client_logo = client_logo_template.replace("{{width}}", adjusted_width);
+        client_logo = client_logo.replace("{{height}}", height);
+        client_logo = client_logo.replace("{{path}}", client_logos[i]);
+        str = str + client_logo;
+    }
+    $("#client-logos-outer").html(str + '</ul>');
+}
+client_logos_view();
 
-    var view = {
-        init: function() {
-            this.$client_logos = $('.client-logos');
-            this.client_logo_template = model.client_logo_template;
-            this.render();
-            this.animate();
-        },
-
-        render: function() {
-            var $client_logos = this.$client_logos,
-            client_logo_template = this.client_logo_template;
-
-            $client_logos.html('');
-            controller.getClientLogos().forEach(function(client_logo) {
-                var thisTemplate = client_logo_template.replace("%data%", client_logo);
-                $client_logos.append(thisTemplate);
-            });
-        }
-
-        animate: function(){
-            var $client_logos = this.$client_logos,
-            var x = 143;
-            c=c+1;
-            $client_logos.css({transform: "translate3d(-"+String(x* (c % 3))+"px, 0px, 0px)"});
-            setTimeout(this.animate(), 2000); // Change image every 2 seconds
-        }
-    };
-
-    controller.init();
-}());
+var c = 0;
+function carousel() {
+    c=c+1;
+    $(".client-logos").css({transform: "translate3d(-"+String(adjusted_width* (c % hidden_logos_count))+"px, 0px, 0px)"});
+    setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+carousel();

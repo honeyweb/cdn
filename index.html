@@ -5,58 +5,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<style>
-		.client-logos-container{
-			position: relative;
-			width: 100%;
-			/*border:1px solid red;*/
-			padding: 10px;
-		    display: inline-flex;
-		}
-		#client-logos-outer{
-			width:100%;
-			overflow:hidden;
-			margin-left: 40px;
-		    margin-right: 40px;
-			/*border:1px solid red;*/
-		}
-		.client-logos { 
-		    list-style-type: none;
-		    align-items: horizontal;
-		    width: 2860px;
-		    height: 100px;
-		    /*border:1px solid red;*/
-		    padding: 0px;
-		    transform: translate3d(0px, 0px, 0px); 
-		    transition: all 0.25s ease 0s;
-		}
-		.slider-button{
-			position: absolute;
-			top:35px;
-			height:50px;
-			width: 30px;
-		}
-		.slider-button:first-child{
-			left:10px;
-		}
-		.slider-button:last-child{
-			right:10px;
-		}
-		.client-logo {
-			width: 143px;
-			float:left;
-		    height: 100px;
-		    padding:5px;
-		    /*border:1px solid red;*/
-		    text-align: center;	
-		}
-		.client-logo img{
-			max-width:100%; 
-			max-height: 100%;
-		}
-
-	</style>
-	
+	<link rel="stylesheet" href="css/client-logos.css">
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -74,6 +23,7 @@
     </ul>
   </div>
 </nav>
+
 <div class="client-logos-container">
 	<button class="slider-button"><</button>
 	<div id="client-logos-outer">
@@ -81,40 +31,8 @@
 		</ul>
 	</div>
 	<button class="slider-button">></button>
-</div>
+</div><!-- client-logos -->
 
-<!-- <script>
-	var arr = [
-		"https://honeyweb.github.io/cdn/images/msmarcom/clients/1.png",
-		"https://honeyweb.github.io/cdn/images/msmarcom/clients/2.png",
-		"https://honeyweb.github.io/cdn/images/msmarcom/clients/3.png",
-		"https://honeyweb.github.io/cdn/images/msmarcom/clients/4.png",
-		"https://honeyweb.github.io/cdn/images/msmarcom/clients/5.png",
-		"https://honeyweb.github.io/cdn/images/msmarcom/clients/6.png",
-		"https://honeyweb.github.io/cdn/images/msmarcom/clients/7.png",
-		"https://honeyweb.github.io/cdn/images/msmarcom/clients/8.png",
-		"https://honeyweb.github.io/cdn/images/msmarcom/clients/9.png",
-		"https://honeyweb.github.io/cdn/images/msmarcom/clients/10.png",
-		"https://honeyweb.github.io/cdn/images/msmarcom/clients/11.png",
-		"https://honeyweb.github.io/cdn/images/msmarcom/clients/12.png",
-	];
-	function client_logos_view(){
-		var str= '<ul class="client-logos">';
-		for (var i = 0; i < arr.length; i++) {
-			str = str + '<li class="client-logo"><img src="' + arr[i] + '"></li>';
-		}
-		$("#client-logos-outer").html(str + '</ul>');
-	}
-	client_logos_view();
-	carousel();
-	var c = 0;
-	function carousel() {
-	    var x = 143;
-	    c=c+1;
-	    $(".client-logos").css({transform: "translate3d(-"+String(x* (c % 3))+"px, 0px, 0px)"});
-	    setTimeout(carousel, 2000); // Change image every 2 seconds
-	}
-</script> -->
-<script src="https://honeyweb.github.io/cdn/js/client-logos.js" type="text/javascript" charset="utf-8" async defer></script>
+<script src="js/client-logos.js" type="text/javascript" charset="utf-8" async defer></script>
 </body>
 </html>
