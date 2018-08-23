@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'FontAwesome';
+  font-family: 'icomoon';
   src:  url('../fonts/icomoon/icomoon.eot?6tt51o');
   src:  url('../fonts/icomoon/icomoon.eot?6tt51o#iefix') format('embedded-opentype'),
     url('../fonts/icomoon/icomoon.ttf?6tt51o') format('truetype'),
@@ -11,7 +11,7 @@
 
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'FontAwesome' !important;
+  font-family: 'icomoon' !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
