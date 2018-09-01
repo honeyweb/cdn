@@ -1,4 +1,4 @@
-var client_logo_template = '<li class="client-logo" style="width:{{width}}px; height:{{height}}px;"><img src="{{path}}"></li>';
+var client_logo_template = '<li class="client-logo"><img src="{{path}}"></li>';
 
 var client_logos = [
     "https://honeyweb.github.io/cdn/images/msmarcom/clients/1.png",
@@ -17,21 +17,24 @@ var client_logos = [
 
 var width = 143;
 var height = 100;
-var adjusted_width;
-var total_width;
-var hidden_logos_count;
+var adjusted_width = 143;
+var total_width = adjusted_width*12;
+var hidden_logos_count=3;
 
 function width_adjustment(){
     var sh = screen.height;
     var sw = screen.width;
+    console.log((sw-100));
+    console.log(Math.floor((sw-100)/width));
     adjusted_width = (sw-100) / Math.floor((sw-100)/width);
+    console.log(adjusted_width);
     total_width = client_logos.length * adjusted_width;
     hidden_logos_count = client_logos.length - Math.floor((sw-100)/width) + 1;
 }
-width_adjustment();
+// width_adjustment();
 
 function client_logos_view(){
-    var str= '<ul class="client-logos" style="width:{{width}}px; height:{{height}}px;">';
+    var str= '<ul class="client-logos">';
     str = str.replace("{{width}}", total_width);
     str = str.replace("{{height}}", height);
     var client_logo="";

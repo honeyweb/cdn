@@ -15,9 +15,9 @@
 .client-logos { 
     list-style-type: none;
     align-items: horizontal;
-    width: 1716px;
+    width: calc((100% - 100px)*12);
     height: 100px;
-    border:1px solid red;
+    /*border:1px solid red;*/
     padding: 0px;
     transform: translate3d(0px, 0px, 0px); 
     transition: all 0.25s ease 0s;
